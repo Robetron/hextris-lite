@@ -1,47 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Hextris Lite</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, minimal-ui"/>
-<link rel="icon" type="image/png" href="favicon.ico">
-<link rel="stylesheet" type="text/css" href="style/fa/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="style/style.css">
-<script type="text/javascript" src="js/hammer.min.js"></script>
-<script type="text/javascript" src="js/js.cookie.js"></script>
-<script type="text/javascript" src="js/jsonfn.min.js"></script>
-<script type="text/javascript" src="js/keypress.min.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/sweet-alert.min.js"></script>
-<script type="text/javascript" src="js/hextris-lite.js"></script>
+	<title>Hextris Lite</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, minimal-ui" />
+	<meta name="theme-color" content="#FFFFFF">
+	<meta name="Description" content="Redesigned Tetris Game">
+	<link rel="icon" type="image/png" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="style/fa/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+	<link rel="manifest" href="manifest.json">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+	  (adsbygoogle = window.adsbygoogle || []).push({
+		google_ad_client: "ca-pub-1039774105988879",
+		enable_page_level_ads: true
+	  });
+	</script>
 </head>
+
 <body>
-<canvas id="canvas"></canvas>
-<div id="overlay" class="faded overlay"></div>
-<div id="startBtn" ></div>
-<div id="helpScreen" class="unselectable">
-	<div id="inst_main_body"></div>
-</div>
-<img id="openSideBar" class="helpText" src="./images/btn_help.svg"/>
-<div class="faded overlay"></div>
-<img id="pauseBtn" src="./images/btn_pause.svg"/>
-<img id="restartBtn" src="./images/btn_restart.svg"/>
-<div id="HIGHSCORE">HIGH SCORE</div>
-<div id="highScoreInGameText">
-	<div id="highScoreInGameTextHeader">HIGH SCORE</div><div id="currentHighScore">10292</div>
-</div>
-<div id="gameoverscreen">
-	<div id="container">
-		<div id="gameOverBox" class="GOTitle">GAME OVER</div>
-		<div id="cScore">1843</div>
-		<div id="highScoresTitle" class="GOTitle">HIGH SCORES</div>
-		<div class="score"><span class="scoreNum">1.</span> <div id="1place" style="display:inline;">0</div></div>
-		<div class="score"><span class="scoreNum">2.</span> <div id="2place" style="display:inline;">0</div></div>
-		<div class="score"><span class="scoreNum">3.</span> <div id="3place" style="display:inline;">0</div></div>
+	<canvas id="canvas"></canvas>
+	<div id="overlay" class="faded overlay"></div>
+	<div id="startBtn"></div>
+	<div id="helpScreen" class="unselectable">
+		<div id="inst_main_body"></div>
 	</div>
-	<div id="bottomContainer">
-		<img id="restart" src="./images/btn_restart.svg" height="57px">
-		<div id="buttonCont"></div>
+	<img id="openSideBar" class="helpText" src="./images/btn_help.svg" />
+	<div class="faded overlay"></div>
+	<img id="pauseBtn" src="./images/btn_pause.svg" />
+	<img id="restartBtn" src="./images/btn_restart.svg" />
+	<div id="HIGHSCORE">HIGH SCORE</div>
+	<div id="highScoreInGameText">
+		<div id="highScoreInGameTextHeader">HIGH SCORE</div>
+		<div id="currentHighScore">10292</div>
 	</div>
-</div>
+	<div id="gameoverscreen">
+		<div id="container">
+			<div id="gameOverBox" class="GOTitle">GAME OVER</div>
+			<div id="cScore">1843</div>
+			<div id="highScoresTitle" class="GOTitle">HIGH SCORES</div>
+			<div class="score"><span class="scoreNum">1.</span>
+				<div id="1place" style="display:inline;">0</div>
+			</div>
+			<div class="score"><span class="scoreNum">2.</span>
+				<div id="2place" style="display:inline;">0</div>
+			</div>
+			<div class="score"><span class="scoreNum">3.</span>
+				<div id="3place" style="display:inline;">0</div>
+			</div>
+		</div>
+		<div id="bottomContainer">
+			<img id="restart" src="./images/btn_restart.svg" height="57px">
+			<div id="buttonCont"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/hammer.min.js"></script>
+	<script type="text/javascript" src="js/js.cookie.js"></script>
+	<script type="text/javascript" src="js/jsonfn.min.js"></script>
+	<script type="text/javascript" src="js/keypress.min.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/sweet-alert.min.js"></script>
+	<script type="text/javascript" src="js/hextris-lite.js"></script>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyCxXKXL4-Z3_qMMONDS8zal762wRe-FReg",
+			authDomain: "vaypr-tech.firebaseapp.com",
+			databaseURL: "https://vaypr-tech.firebaseio.com",
+			projectId: "vaypr-tech",
+			storageBucket: "",
+			messagingSenderId: "282005288210",
+			appId: "1:282005288210:web:90136ae5f66ddea7"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+	</script>
+	<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/sw.js')
+				.then(function () {
+					console.log('Service Worker Registered');
+				});
+		}
+	</script>
 </body>
+
 </html>
