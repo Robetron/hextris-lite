@@ -1,6 +1,11 @@
-[![Hextris Lite](https://raw.githubusercontent.com/attogram/attogram-docs/master/hextris-lite/hextris-lite.png)](https://github.com/attogram/hextris-lite)
+[![Hextris Lite](https://raw.githubusercontent.com/attogram/attogram-docs/master/hextris-lite/hextris-lite.png)](https://github.com/Robetron/hextris-lite)
 
 # Hextris Lite
+
+Forked from the Attogram Project who did an amazing job of stripping of all unnecessary stuff from the game as mentioned below.
+Added Progressive Web App functionality to the game.
+
+Big Thanks to the Attogram Project 
 
 Hextris is an amazingly great open source game.
 The original authors deserve massive credit for creating
@@ -38,9 +43,9 @@ Enjoy.
 
 ## Play Now
 
-* <https://attogram.github.io/hextris-lite/>
-* <https://fosiper.com/games/hextris-lite/>
+* <https://hextris-lite.web.app/>
+* <https://hextris-lite.firebaeapp.com/>
 
 ## Get the source
 
-* <https://github.com/attogram/hextris-lite>
+* <https://github.com/Robetron/hextris-lite>

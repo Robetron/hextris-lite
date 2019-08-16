@@ -10,13 +10,72 @@
 	<link rel="stylesheet" type="text/css" href="style/fa/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="style/style.css">
 	<link rel="manifest" href="manifest.json">
+
+	<!-- Google AdSense -->
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<script>
-	  (adsbygoogle = window.adsbygoogle || []).push({
-		google_ad_client: "ca-pub-1039774105988879",
-		enable_page_level_ads: true
-	  });
+		(adsbygoogle = window.adsbygoogle || []).push({
+			google_ad_client: "ca-pub-1039774105988879",
+			enable_page_level_ads: true
+		});
 	</script>
+
+	<!-- Google Analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145812581-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-145812581-1');
+	</script>
+	<style>
+		#snackbar {
+			visibility: hidden;
+			min-width: 250px;
+			margin-left: -125px;
+			background-color: #333;
+			color: #fff;
+			text-align: center;
+			border-radius: 2px;
+			padding: 16px;
+			position: fixed;
+			z-index: 1;
+			left: 50%;
+			bottom: 30px;
+		}
+
+		#snackbar.show {
+			visibility: visible;
+			-webkit-animation: fadein 0.5s;
+			animation: fadein 0.5s;
+		}
+
+		@-webkit-keyframes fadein {
+			from {
+				bottom: 0;
+				opacity: 0;
+			}
+
+			to {
+				bottom: 30px;
+				opacity: 1;
+			}
+		}
+
+		@keyframes fadein {
+			from {
+				bottom: 0;
+				opacity: 0;
+			}
+
+			to {
+				bottom: 30px;
+				opacity: 1;
+			}
+		}
+	</style>
 </head>
 
 <body>
@@ -55,6 +114,8 @@
 			<div id="buttonCont"></div>
 		</div>
 	</div>
+	<div id="snackbar">A new version of Hextris is available. Click <a id="reload">here</a> to update.</div>
+
 	<script type="text/javascript" src="js/hammer.min.js"></script>
 	<script type="text/javascript" src="js/js.cookie.js"></script>
 	<script type="text/javascript" src="js/jsonfn.min.js"></script>
@@ -62,6 +123,8 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/sweet-alert.min.js"></script>
 	<script type="text/javascript" src="js/hextris-lite.js"></script>
+
+	<!-- Google Firebase -->
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
 
@@ -80,12 +143,42 @@
 		firebase.initializeApp(firebaseConfig);
 	</script>
 	<script>
-		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.register('/sw.js')
-				.then(function () {
-					console.log('Service Worker Registered');
-				});
+		let newWorker;
+		function showUpdateBar() {
+			let snackbar = document.getElementById('snackbar');
+			snackbar.className = 'show';
 		}
+		// The click event on the pop up notification
+		document.getElementById('reload').addEventListener('click', function () {
+			newWorker.postMessage({ action: 'skipWaiting' });
+		});
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/sw.js').then(reg => {
+				reg.addEventListener('updatefound', () => {
+					// A wild service worker has appeared in reg.installing!
+					newWorker = reg.installing;
+					newWorker.addEventListener('statechange', () => {
+						// Has network.state changed?
+						switch (newWorker.state) {
+							case 'installed':
+								if (navigator.serviceWorker.controller) {
+									// new update available
+									showUpdateBar();
+								}
+								// No update available
+								break;
+						}
+					});
+				});
+			});
+			let refreshing;
+			navigator.serviceWorker.addEventListener('controllerchange', function () {
+				if (refreshing) return;
+				window.location.reload();
+				refreshing = true;
+			});
+		}
+
 	</script>
 </body>
 
